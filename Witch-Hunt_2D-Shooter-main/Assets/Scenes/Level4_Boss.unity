@@ -3975,14 +3975,13 @@ GameObject:
   m_Component:
   - component: {fileID: 781852252}
   - component: {fileID: 781852251}
-  - component: {fileID: 781852253}
   m_Layer: 0
   m_Name: UI_Fixer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &781852251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3992,18 +3991,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 781852250}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 565b6b212a9b9a440b29e78f4a839b37, type: 3}
+  m_Script: {fileID: 11500000, guid: a82c5ed4677997b4c9cc5c5e33d09f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceShowCursor: 1
-  desiredLockMode: 0
+  preferNewInputSystem: 0
   ensureEventSystem: 1
-  preferStandaloneInputModule: 1
-  enableGraphicRaycasterOnAllCanvas: 1
-  autoUnblockTransparentCovers: 1
+  forceShowCursor: 1
+  autoUnblockTransparentOverlays: 1
   alphaThreshold: 0.02
-  debugPointer: 1
-  debugRayGizmoColor: {r: 0, g: 1, b: 1, a: 0.6}
 --- !u!4 &781852252
 Transform:
   m_ObjectHideFlags: 0
@@ -4018,21 +4013,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &781852253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781852250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2139ed1c98d7347a8b21ec25ea7f9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiSortingOrder: 5000
-  forceAddCanvas: 1
-  forceAddRaycaster: 1
 --- !u!1 &805155244
 GameObject:
   m_ObjectHideFlags: 0
@@ -10042,6 +10022,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 660657818}
+    - target: {fileID: 7896090946472565924, guid: 77239c252f985844b8242e1fcf287a1d, type: 3}
+      propertyPath: m_CursorLockBehavior
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7896090946652381400, guid: 77239c252f985844b8242e1fcf287a1d, type: 3}
       propertyPath: m_IsActive
       value: 0
