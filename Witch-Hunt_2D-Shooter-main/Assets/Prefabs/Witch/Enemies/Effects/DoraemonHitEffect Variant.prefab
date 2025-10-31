@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5138889183578074428
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7473515956558314861, guid: 575ec6eb4d5eb0444bafffbfbcdcb51c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473515956558314861, guid: 575ec6eb4d5eb0444bafffbfbcdcb51c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 40.20496
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473515956558314861, guid: 575ec6eb4d5eb0444bafffbfbcdcb51c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.4204407
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473515956558314861, guid: 575ec6eb4d5eb0444bafffbfbcdcb51c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.8000485
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473515956558314861, guid: 575ec6eb4d5eb0444bafffbfbcdcb51c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473515956558314861, guid: 575ec6eb4d5eb0444bafffbfbcdcb51c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473515956558314861, guid: 575ec6eb4d5eb0444bafffbfbcdcb51c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473515956558314861, guid: 575ec6eb4d5eb0444bafffbfbcdcb51c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473515956558314861, guid: 575ec6eb4d5eb0444bafffbfbcdcb51c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473515956558314861, guid: 575ec6eb4d5eb0444bafffbfbcdcb51c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473515956558314861, guid: 575ec6eb4d5eb0444bafffbfbcdcb51c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805974524334622286, guid: 575ec6eb4d5eb0444bafffbfbcdcb51c, type: 3}
+      propertyPath: m_Name
+      value: DoraemonHitEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046325031270056231, guid: 575ec6eb4d5eb0444bafffbfbcdcb51c, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 013337b7074c32640b54b6f880c9f419, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575ec6eb4d5eb0444bafffbfbcdcb51c, type: 3}
