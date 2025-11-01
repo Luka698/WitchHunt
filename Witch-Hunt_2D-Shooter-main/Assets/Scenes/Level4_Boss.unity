@@ -1458,6 +1458,34 @@ Transform:
   m_Father: {fileID: 1700137317}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &203105804 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4997517106989274887, guid: 77239c252f985844b8242e1fcf287a1d, type: 3}
+  m_PrefabInstance: {fileID: 7896090944897035923}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &203105808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203105804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1b4930880264c64cbd737040e0e2de2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerControlLocker: {fileID: 0}
+  topSortingOrder: 6000
+  forceOverrideSorting: 1
+  ensureCanvasGroup: 1
+  makeInteractable: 1
+  makeBlocksRaycasts: 1
+  autoUnblockTransparentOverlays: 1
+  alphaThreshold: 0.02
+  forceShowCursor: 1
+  recenterPointerFocus: 1
+  firstSelected: {fileID: 444465095}
 --- !u!1001 &205270676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2418,6 +2446,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &444465095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8768237468558362154, guid: 77239c252f985844b8242e1fcf287a1d, type: 3}
+  m_PrefabInstance: {fileID: 7896090944897035923}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &448645859
 GameObject:
   m_ObjectHideFlags: 0
@@ -3327,6 +3360,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &665853403 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3454379820140308933, guid: b76c7d71e5614714c824c6efe4907ead, type: 3}
+  m_PrefabInstance: {fileID: 1325852229}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &697633481
 GameObject:
   m_ObjectHideFlags: 0
@@ -5133,7 +5171,7 @@ GameObject:
   - component: {fileID: 1075880261}
   m_Layer: 0
   m_Name: Move1
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7517,6 +7555,7 @@ MonoBehaviour:
   - {fileID: 1180997669}
   - {fileID: 1417364505}
   - {fileID: 1033198793}
+  - {fileID: 665853403}
   cinematic: {fileID: 248050351}
   cameraMoveDuration: 1.2
   desiredDistanceFromBoss: 6
@@ -9219,7 +9258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1772585084067370476, guid: d12cf9555d01b2948840854421e70c2c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.9
+      value: -68.2
       objectReference: {fileID: 0}
     - target: {fileID: 1772585084067370476, guid: d12cf9555d01b2948840854421e70c2c, type: 3}
       propertyPath: m_LocalPosition.y

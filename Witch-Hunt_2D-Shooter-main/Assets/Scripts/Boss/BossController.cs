@@ -110,7 +110,7 @@ public class BossController : MonoBehaviour
     public string paramIsCannoning = "IsCannoning";
 
     // =========================
-    //   ROCKET CONFIG / PREFABS / CANNON (giữ nguyên)
+    //   ROCKET CONFIG / PREFABS / CANNON
     // =========================
     [Header("Rocket (Warning → Fall → Explosion)")]
     public float rocketCastDuration = 0.6f;
@@ -266,6 +266,34 @@ public class BossController : MonoBehaviour
         ClearAllActions();
     }
 
+    // GỌI HÀM NÀY KHI BOSS CHẾT
+    public void Die()
+    {
+        if (state == BossState.Dead) return;
+        state = BossState.Dead;
+
+        // Ngừng AI + hành động hiện tại
+        StopAllCoroutines();
+        StopFreeBrain();
+        ClearAllActions();
+
+        // Đóng băng Boss
+        if (rb)
+        {
+            rb.velocity = Vector2.zero;
+            rb.isKinematic = true;
+        }
+
+        // Hủy hitbox đang tồn tại
+        DestroyRuntimePunchHitbox();
+
+        // Dọn sạch đạn/effects cả Boss lẫn Player
+        CleanupAllProjectilesAndFX();
+
+        // (Nếu cần: phát SFX chết, animation... để nơi khác tự lo)
+        Debug.Log("☠ Boss died → cleaned projectiles/FX and stopped AI.");
+    }
+
     // =========================
     //   MAIN BRAIN LOOP
     // =========================
@@ -397,7 +425,6 @@ public class BossController : MonoBehaviour
             if (!hasDamaged && autoHitWhenVeryClose && CheckCloseContactAutoHit())
             {
                 hasDamaged = true;
-                // vẫn giữ runtime hitbox để trúng nếu player lao vào muộn hơn
             }
 
             // (2) Cập nhật hướng, dash và hitbox runtime bám theo
@@ -426,11 +453,11 @@ public class BossController : MonoBehaviour
             if (useRuntimePunchHitbox)
             {
                 Vector2 cc, ss; ComputePunchHitbox(dirN, out cc, out ss);
-                SpawnOrUpdateRuntimePunchHitbox(cc, ss); // chỉ update nếu đã tạo
+                SpawnOrUpdateRuntimePunchHitbox(cc, ss);
             }
             else
             {
-                // (4) Nếu KHÔNG dùng runtime hitbox → quét OverlapBox như trước
+                // (4) Fallback OverlapBox
                 if (!hasDamaged && CheckPunchHitAndDamage_StrictFront(dirN))
                     hasDamaged = true;
             }
@@ -496,7 +523,7 @@ public class BossController : MonoBehaviour
     }
 
     // =========================
-    //   ROCKET / CANNON (giữ nguyên; rút gọn phần vfx/đạn)
+    //   ROCKET / CANNON
     // =========================
 
     // Chọn ngẫu nhiên một điểm rơi quanh Player (fallback: quanh Boss nếu chưa tìm thấy player)
@@ -504,7 +531,6 @@ public class BossController : MonoBehaviour
     {
         Transform target = player ? player : transform;
 
-        // đảm bảo min/max hợp lệ
         float minR = Mathf.Max(0.1f, landingRadiusRange.x);
         float maxR = Mathf.Max(minR, landingRadiusRange.y);
 
@@ -975,6 +1001,41 @@ public class BossController : MonoBehaviour
     }
 
     // =========================
+    //   CLEANUP SAU KHI BOSS CHẾT
+    // =========================
+    public void CleanupAllProjectilesAndFX()
+    {
+        Debug.Log("🧹 Boss died → clearing all projectiles and FX...");
+
+        // Xoá đạn Boss
+        var bossBullets = GameObject.FindGameObjectsWithTag("EnemyProjectile");
+        foreach (var b in bossBullets) Destroy(b);
+
+        // Xoá đạn Player
+        var playerBullets = GameObject.FindGameObjectsWithTag("PlayerProjectile");
+        foreach (var b in playerBullets) Destroy(b);
+
+        // Xoá hiệu ứng Boss (nếu đã set tag)
+        var bossEffects = GameObject.FindGameObjectsWithTag("BossFX");
+        foreach (var e in bossEffects) Destroy(e);
+
+        // Tắt các spawner/launcher còn chạy
+        foreach (var mb in FindObjectsOfType<MonoBehaviour>())
+        {
+            var n = mb.GetType().Name;
+            if (n.Contains("Spawner") || n.Contains("Shockwave") || n.Contains("Shoot") || n.Contains("Launch"))
+                mb.enabled = false;
+        }
+
+        // Tắt audio FX kéo dài
+        foreach (var audio in FindObjectsOfType<AudioSource>())
+        {
+            if (audio && audio.isPlaying && audio.gameObject.name.Contains("Boss"))
+                audio.Stop();
+        }
+    }
+
+    // =========================
     //   GIZMOS
     // =========================
     void OnDrawGizmosSelected()
@@ -1018,7 +1079,7 @@ public class PunchHitboxRuntime : MonoBehaviour
     private bool alreadyHit;
     private SFXLibrary sfx;
     private Transform ownerRoot;
-    private BossController ownerBoss; // để tránh double-damage nếu cần mở rộng
+    private BossController ownerBoss;
 
     public void Arm(LayerMask playerLayer, string playerTag, int dmg, SFXLibrary sfxLib, Transform owner, BossController boss)
     {
@@ -1031,25 +1092,15 @@ public class PunchHitboxRuntime : MonoBehaviour
         alreadyHit = false;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        TryHit(other);
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        // Bắt overlap ở frame đầu khi vừa spawn
-        TryHit(other);
-    }
+    void OnTriggerEnter2D(Collider2D other) { TryHit(other); }
+    void OnTriggerStay2D(Collider2D other) { TryHit(other); }
 
     void TryHit(Collider2D col)
     {
         if (alreadyHit || col == null) return;
 
-        // Bỏ qua chủ sở hữu và con của chủ sở hữu
         if (ownerRoot && (col.transform == ownerRoot || col.transform.IsChildOf(ownerRoot))) return;
 
-        // Lọc layer/tag
         if (targetLayer.value != 0)
         {
             if (((1 << col.gameObject.layer) & targetLayer.value) == 0) return;
