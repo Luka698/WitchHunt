@@ -3286,6 +3286,10 @@ PrefabInstance:
       value: LargeCamera
       objectReference: {fileID: 0}
     - target: {fileID: 166746147861355634, guid: 7c2af12062ffd684bba886e9846a79c4, type: 3}
+      propertyPath: orthographic size
+      value: 12.069458
+      objectReference: {fileID: 0}
+    - target: {fileID: 166746147861355634, guid: 7c2af12062ffd684bba886e9846a79c4, type: 3}
       propertyPath: m_BackGroundColor.b
       value: 0
       objectReference: {fileID: 0}
